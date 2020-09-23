@@ -15,7 +15,7 @@
 
 .main__videos {
     flex-grow: 1;
-    background-color: black;
+    background-color: rgb(214, 198, 198);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,19 +23,18 @@
 }
 
 .main__controls {
-    background-color: #1C1E20;
+    background-color: #2F3B52;
 }
 
 .main__right {
-    background-color: #242324;
+    background-color: #2F3B52;
     border-left: 1px solid #3D3D42;
 }
 
 .main__controls {
-    color: #D2D2D2;
+    color: white;
     display: flex;
     justify-content: space-between;
-    padding: 5px;
 }
 
 .main__controls__block {
@@ -79,7 +78,12 @@
 
 .messages {
     color: white;
+    background-color: #242E42;
     list-style: none;
+}
+
+.messages ul {
+    margin-top: 10px;
 }
 
 .main__message_container {

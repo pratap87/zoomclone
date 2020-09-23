@@ -1,5 +1,7 @@
 const socket = io()
 const videoGrid = document.getElementById('video-grid');
+const startElem = document.getElementById("start");
+const stopElem = document.getElementById("stop");
 //NOTE: removing settings from peer constructor solved join-room event not emitting!
 const myPeer = new Peer();
 
@@ -120,7 +122,7 @@ const setUnmuteButton = () => {
 
 const setStopVideo = () => {
     const html = `
-    <i class="fas fa-video"></i>
+     <img src="./camera.png">
     <span>Stop Video</span>
   `
     document.querySelector('.main__video_button').innerHTML = html;
@@ -132,4 +134,43 @@ const setPlayVideo = () => {
     <span>Play Video</span>
   `
     document.querySelector('.main__video_button').innerHTML = html;
+}
+
+startElem.addEventListener("click", function(evt) {
+    startCapture();
+}, false);
+
+stopElem.addEventListener("click", function(evt) {
+    stopCapture();
+}, false);
+
+var displayMediaOptions = {
+    video: {
+        cursor: "always"
+    },
+    audio: false
+};
+
+const startCapture = async() => {
+    myVideo.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+    myVideo.style.width = "100%"
+    myVideo.style.height = "100%"
+    dumpOptionsInfo();
+}
+
+async function stopCapture(evt) {
+
+    myVideo.srcObject = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
+    })
+}
+
+function dumpOptionsInfo() {
+    const videoTrack = myVideo.srcObject.getVideoTracks()[0];
+
+    console.info("Track settings:");
+    console.info(JSON.stringify(videoTrack.getSettings(), null, 2));
+    console.info("Track constraints:");
+    console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));
 }
