@@ -24,13 +24,13 @@ navigator.mediaDevices.getUserMedia({
     })
 
     socket.on('user-connected', userId => {
-            alert("New user!");
-            connectToNewUser(userId, stream)
-        })
-        // input value
+        alert("New user!");
+        connectToNewUser(userId, stream)
+    })
+    // input value
     let text = $("input");
     // when press enter send message
-    $('html').keydown(function(e) {
+    $('html').keydown(function (e) {
         let value = text.val();
         if (e.which == 13 && value.length !== 0) {
             socket.emit('message', value);
@@ -136,11 +136,11 @@ const setPlayVideo = () => {
     document.querySelector('.main__video_button').innerHTML = html;
 }
 
-startElem.addEventListener("click", function(evt) {
+startElem.addEventListener("click", function (evt) {
     startCapture();
 }, false);
 
-stopElem.addEventListener("click", function(evt) {
+stopElem.addEventListener("click", function (evt) {
     stopCapture();
 }, false);
 
@@ -151,7 +151,7 @@ var displayMediaOptions = {
     audio: false
 };
 
-const startCapture = async() => {
+const startCapture = async () => {
     myVideo.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
     myVideo.style.width = "100%"
     myVideo.style.height = "100%"
